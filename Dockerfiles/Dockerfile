@@ -13,7 +13,7 @@ RUN apt install adoptopenjdk-8-hotspot -y
 
 ENV JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64
 
-RUN pip3 install pyspark==2.4.5 jupyter sparkmonitor
+RUN pip3 install pyspark==2.4.5 jupyter sparkmonitor pandas numpy
 
 USER jupyter
 
