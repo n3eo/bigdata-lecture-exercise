@@ -13,12 +13,17 @@ RUN apt install adoptopenjdk-8-hotspot -y
 
 ENV JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64
 
-RUN pip3 install pyspark==2.4.5 jupyter
+RUN pip3 install pyspark==2.4.5 jupyter sparkmonitor
 
 USER jupyter
 
 RUN mkdir /home/jupyter/work
 WORKDIR /home/jupyter
 
-CMD ["jupyter", "notebook", "--ip", "0.0.0.0", "--no-browser"]
+RUN jupyter nbextension install sparkmonitor --py --user --symlink 
+RUN jupyter nbextension enable sparkmonitor --py --user            
+RUN jupyter serverextension enable --py --user sparkmonitor
+RUN ipython profile create && echo "c.InteractiveShellApp.extensions.append('sparkmonitor.kernelextension')" >>  $(ipython profile locate default)/ipython_kernel_config.py
+
+CMD ["jupyter", "notebook", "--ip", "0.0.0.0", "--no-browser", "--NotebookApp.token=''"]
 EXPOSE 8888
