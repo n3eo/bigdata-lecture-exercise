@@ -9,7 +9,7 @@ RUN apt install -y wget gnupg software-properties-common openjdk-11-jdk
 
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 
-RUN pip3 install pyspark==3.1.2 jupyter sparkmonitor pandas numpy plotly
+RUN pip3 install pyspark==3.1.2 jupyter plotly sparkmonitor 
 
 USER jupyter
 

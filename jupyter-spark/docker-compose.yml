@@ -85,8 +85,6 @@ volumes:
   namenode:
   datanode:
   datanode2:
-  datanode3:
-  datanode4:
   s3data:
 
 networks:
