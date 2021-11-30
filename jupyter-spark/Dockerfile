@@ -9,7 +9,7 @@ RUN apt install -y wget gnupg software-properties-common openjdk-11-jdk
 
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 
-RUN pip3 install pyspark==3.1.2 jupyter plotly sparkmonitor 
+RUN pip3 install pyspark==3.1.2 jupyter plotly sparkmonitor
 
 USER jupyter
 
@@ -18,7 +18,6 @@ WORKDIR /home/jupyter
 
 RUN jupyter nbextension install sparkmonitor --py --user --symlink 
 RUN jupyter nbextension enable sparkmonitor --py --user            
-RUN jupyter serverextension enable --py --user sparkmonitor
 RUN ipython profile create && echo "c.InteractiveShellApp.extensions.append('sparkmonitor.kernelextension')" >>  $(ipython profile locate default)/ipython_kernel_config.py
 
 
